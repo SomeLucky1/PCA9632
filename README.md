@@ -13,9 +13,6 @@ but should work for every other board as well.
 
     /**
      * Initialization.
-     *
-     * @param deviceAddress I2C address of the pca9632
-     * @param wire          Reference to TwoWire for I2C communication
      */
     void begin();
 
