@@ -8,10 +8,10 @@
 
 #include "Arduino.h"
 
-#include "PCA9633.h"
+#include "PCA9632.h"
 
 /******************************* PUBLIC METHODS *******************************/
-PCA9633::PCA9633() {
+PCA9632::PCA9632() {
 
     _regRedPwm = REG_PWM0;
    _regGreenPwm = REG_PWM1;
@@ -19,7 +19,7 @@ PCA9633::PCA9633() {
     _regWhitePwm = REG_PWM3;
 }
 
-void PCA9633::begin() {
+void PCA9632::begin() {
 
     _deviceAddres = RGB_ADDRESS;
 
@@ -29,11 +29,12 @@ void PCA9633::begin() {
     // clear/ reset registers
     writeReg(REG_MODE1, 0x0);
     writeReg(REG_MODE2, 0x0);
+    // set default states
     setLdrStateAll(LDR_STATE_IND_GRP);
     setGroupControlMode(GROUP_CONTROL_MODE_DIMMING);
 }
 
-void PCA9633::wakeUp() {
+void PCA9632::wakeUp() {
 
     uint8_t prevReg = readReg(REG_MODE1);
     uint8_t newReg = prevReg & ~(1 << BIT_SLEEP);
@@ -41,7 +42,7 @@ void PCA9633::wakeUp() {
     writeReg(REG_MODE1, newReg);
 }
 
-void PCA9633::sleep() {
+void PCA9632::sleep() {
 
     uint8_t prevReg = readReg(REG_MODE1);
     uint8_t newReg = prevReg | (1 << BIT_SLEEP);
@@ -49,28 +50,28 @@ void PCA9633::sleep() {
     writeReg(REG_MODE1, newReg);
 }
 
-void PCA9633::turnOn() {
+void PCA9632::turnOn() {
 
     writeReg(REG_LEDOUT, _storedRegLedout);
 }
 
-void PCA9633::turnOff() {
+void PCA9632::turnOff() {
 
     _storedRegLedout = readReg(REG_LEDOUT);
     writeReg(REG_LEDOUT, LDR_STATE_OFF);
 }
 
-void PCA9633::setPwm(uint8_t regPwm, uint8_t pwm) {
+void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
 
     writeReg(regPwm, pwm);
 }
 
-void PCA9633::setGrpPwm(uint8_t pwm) {
+void PCA9632::setGrpPwm(uint8_t pwm) {
 
     writeReg(REG_GRPPWM, pwm);
 }
 
-void PCA9633::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
+void PCA9632::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
 
     int16_t ratio = onOffRatio * 256;
 
@@ -85,44 +86,44 @@ void PCA9633::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
     writeReg(REG_GRPPWM, (uint8_t) ratio);
 }
 
-void PCA9633::setRGB(uint8_t r, uint8_t g, uint8_t b) {
+void PCA9632::setRGB(uint8_t r, uint8_t g, uint8_t b) {
 
     setPwm(_regRedPwm, r);
     setPwm(_regGreenPwm, g);
     setPwm(_regBluePwm, b);
 }
 
-void PCA9633::setColor(uint8_t r, uint8_t g, uint8_t b) {
+void PCA9632::setColor(uint8_t r, uint8_t g, uint8_t b) {
 
         setRed(r);
         setGreen(g);
         setBlue(b);
 }
 
-void PCA9633::setRed(uint8_t r) {
+void PCA9632::setRed(uint8_t r) {
     setPwm(_regRedPwm, r);
 }
 
-void PCA9633::setGreen(uint8_t g) {
+void PCA9632::setGreen(uint8_t g) {
     setPwm(_regGreenPwm, g);
 }
 
-void PCA9633::setBlue(uint8_t b) {
+void PCA9632::setBlue(uint8_t b) {
     setPwm(_regBluePwm, b);
 }
 
-void PCA9633::setWhite(uint8_t w) {
+void PCA9632::setWhite(uint8_t w) {
     setPwm(_regWhitePwm, w);
 }
 
 
-void PCA9633::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
+void PCA9632::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
     setRGB(r, g, b);
     setPwm(_regWhitePwm, w);
 }
 
-void PCA9633::setLdrState(uint8_t state, uint8_t ldrBit) {
+void PCA9632::setLdrState(uint8_t state, uint8_t ldrBit) {
 
     uint8_t prevReg = readReg(REG_LEDOUT);
     uint8_t newReg;
@@ -136,7 +137,7 @@ void PCA9633::setLdrState(uint8_t state, uint8_t ldrBit) {
     writeReg(REG_LEDOUT, newReg);
 }
 
-void PCA9633::setLdrStateAll(uint8_t state) {
+void PCA9632::setLdrStateAll(uint8_t state) {
 
     uint8_t newReg = ( state << BIT_LDR3
                        | state << BIT_LDR2
@@ -146,7 +147,7 @@ void PCA9633::setLdrStateAll(uint8_t state) {
     writeReg(REG_LEDOUT, newReg);
 }
 
-void PCA9633::setDrvState(uint8_t state) {
+void PCA9632::setDrvState(uint8_t state) {
 
     uint8_t prevReg = readReg(REG_MODE2);
     uint8_t newReg;
@@ -160,7 +161,7 @@ void PCA9633::setDrvState(uint8_t state) {
     writeReg(REG_MODE2, newReg);
 }
 
-void PCA9633::setAutoIncrement(uint8_t option) {
+void PCA9632::setAutoIncrement(uint8_t option) {
 
     uint8_t newReg;
 
@@ -201,7 +202,7 @@ void PCA9633::setAutoIncrement(uint8_t option) {
     writeReg(REG_MODE1, newReg);
 }
 
-void PCA9633::setGroupControlMode(uint8_t mode) {
+void PCA9632::setGroupControlMode(uint8_t mode) {
 
     uint8_t prevReg = readReg(REG_MODE2);
 
@@ -220,7 +221,7 @@ void PCA9633::setGroupControlMode(uint8_t mode) {
 
 /****************************** PRIVATE METHODS *******************************/
 
-void PCA9633::writeReg(uint8_t registerAddress, uint8_t data) {
+void PCA9632::writeReg(uint8_t registerAddress, uint8_t data) {
 
     _wire->beginTransmission(_deviceAddres);
     _wire->write(registerAddress);
@@ -228,7 +229,7 @@ void PCA9633::writeReg(uint8_t registerAddress, uint8_t data) {
     _wire->endTransmission();
 }
 
-uint8_t PCA9633::readReg(uint8_t registerAddress) {
+uint8_t PCA9632::readReg(uint8_t registerAddress) {
 
     _wire->beginTransmission(_deviceAddres);
     _wire->write(registerAddress);

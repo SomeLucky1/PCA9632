@@ -6,8 +6,8 @@
  * directory for more details.
  */
 
-#ifndef PCA9633_H
-#define PCA9633_H
+#ifndef PCA9632_H
+#define PCA9632_H
 
 #define RGB_ADDRESS (0x62)
 
@@ -108,26 +108,26 @@
 #define BIT_SLEEP   4
 
 /**
- * 0 = PCA9633 does not respond to I2C-bus subaddress 1
- * 1 = PCA9633 responds to I2C-bus subaddress 1
+ * 0 = PCA9632 does not respond to I2C-bus subaddress 1
+ * 1 = PCA9632 responds to I2C-bus subaddress 1
  */
 #define BIT_SUB1    3
 
 /**
- * 0 = PCA9633 does not respond to I2C-bus subaddress 2
- * 1 = PCA9633 responds to I2C-bus subaddress 2
+ * 0 = PCA9632 does not respond to I2C-bus subaddress 2
+ * 1 = PCA9632 responds to I2C-bus subaddress 2
  */
 #define BIT_SUB2    2
 
 /**
- * 0 = PCA9633 does not respond to I2C-bus subaddress 3
- * 1 = PCA9633 responds to I2C-bus subaddress 3
+ * 0 = PCA9632 does not respond to I2C-bus subaddress 3
+ * 1 = PCA9632 responds to I2C-bus subaddress 3
  */
 #define BIT_SUB3    1
 
 /**
- * 0 = PCA9633 does not respond to LED All Call I2C-bus address
- * 1 = PCA9633 responds to LED All Call I2C-bus address
+ * 0 = PCA9632 does not respond to LED All Call I2C-bus address
+ * 1 = PCA9632 responds to LED All Call I2C-bus address
  */
 #define BIT_ALLCALL 0
 
@@ -292,35 +292,35 @@
 
 #define BLINKING_RATIO_BALANCED 0.5
 
-class PCA9633 {
+class PCA9632 {
 
 public:
 
     /**
-     * Constructor for PCA9633 with RGB.
+     * Constructor for PCA9632 with RGB.
      *
      * @param regRedPwm     Register address for red color channel
      * @param regGreenPwm   Register address for green color channel
      * @param regBluePwm    Register address for blue color channel
      */
 
-    PCA9633();
+    PCA9632();
 
     /**
-     * Constructor for PCA9633 with RGBW.
+     * Constructor for PCA9632 with RGBW.
      *
      * @param regRedPwm     Register address for red color channel
      * @param regGreenPwm   Register address for green color channel
      * @param regBluePwm    Register address for blue color channel
      * @param regWhitePwm   Register address for white color channel
      */
-    //PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
+    //PCA9632(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
      //       uint8_t regWhitePwm);
 
     /**
      * Initialization.
      *
-     * @param deviceAddress I2C address of the pca9633
+     * @param deviceAddress I2C address of the pca9632
      * @param wire          Reference to TwoWire for I2C communication
      */
     void begin();
@@ -393,7 +393,7 @@ public:
     void setWhite(uint8_t w);
 
     /**
-    * Set PWM values for RGBW. Only available when PCA9633 object was created
+    * Set PWM values for RGBW. Only available when PCA9632 object was created
     * with the RGBW constructor.
     *
     * @param r  Value for red color channel
@@ -487,7 +487,7 @@ private:
     uint8_t _regRedPwm, _regGreenPwm, _regBluePwm, _regWhitePwm;
 
     /**
-     * Indicates whether PCA9633 was created with the RGBW constructor.
+     * Indicates whether PCA9632 was created with the RGBW constructor.
      */
      bool _hasWhiteChannel;
 
@@ -503,4 +503,4 @@ private:
     TwoWire *_wire;
 };
 
-#endif //PCA9633_H
+#endif //PCA9632_H
