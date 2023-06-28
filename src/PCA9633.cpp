@@ -13,8 +13,8 @@
 /******************************* PUBLIC METHODS *******************************/
 PCA9633::PCA9633() {
 
-    _regRedPwm = REG_PWM0;
-   _regGreenPwm = REG_PWM1;
+    _regRedPwm = REG_PWM1;
+   _regGreenPwm = REG_PWM0;
     _regBluePwm = REG_PWM2;
     _regWhitePwm = REG_PWM3;
 }
