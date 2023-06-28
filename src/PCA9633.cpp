@@ -100,6 +100,33 @@ void PCA9633::setRGB(uint8_t r, uint8_t g, uint8_t b) {
     setPwm(_regBluePwm, b);
 }
 
+void PCA9633::setColor(uint8_t r, uint8_t g, uint8_t b) {
+
+    setPwm(_regRedPwm, r);
+    setPwm(_regGreenPwm, g);
+    setPwm(_regBluePwm, b);
+}
+
+void PCA9633::setRed(uint8_t r) {
+
+    setPwm(_regRedPwm, r);
+}
+
+void PCA9633::setGreen(uint8_t g) {
+
+    setPwm(_regGreenPwm, g);
+}
+
+void PCA9633::setBlue(uint8_t b) {
+
+    setPwm(_regBluePwm, b);
+}
+
+void PCA9633::setWhite(uint8_t w) {
+
+    setPwm(_regWhitePwm, w);
+}
+
 void PCA9633::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
     setRGB(r, g, b);

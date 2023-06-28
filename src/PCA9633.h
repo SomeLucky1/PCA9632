@@ -383,6 +383,11 @@ public:
     * @param b  Value for blue color channel
     */
     void setRGB(uint8_t r, uint8_t g, uint8_t b);
+    void setColor(uint8_t r, uint8_t g, uint8_t b);
+    void setRed(uint8_t r);
+    void setGreen(uint8_t g);
+    void setBlue(uint8_t b);
+    void setWhite(uint8_t w);
 
     /**
     * Set PWM values for RGBW. Only available when PCA9633 object was created
