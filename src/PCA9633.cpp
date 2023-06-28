@@ -11,29 +11,19 @@
 #include "PCA9633.h"
 
 /******************************* PUBLIC METHODS *******************************/
-PCA9633::PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm) {
+PCA9633::PCA9633() {
 
-    _regRedPwm = regRedPwm;
-    _regGreenPwm = regGreenPwm;
-    _regBluePwm = regBluePwm;
-
-    _hasWhiteChannel = false;
+    _regRedPwm = REG_PWM0;
+   _regGreenPwm = REG_PWM1;
+    _regBluePwm = REG_PWM2;
+    _regWhitePwm = REG_PWM3;
 }
 
-PCA9633::PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
-                 uint8_t regWhitePwm)
-                 : PCA9633(regRedPwm, regGreenPwm, regBluePwm) {
+void PCA9633::begin() {
 
-    _regWhitePwm = regWhitePwm;
+    _deviceAddres = RGB_ADDRESS;
 
-    _hasWhiteChannel = true;
-}
-
-void PCA9633::begin(uint8_t deviceAddress, TwoWire *wire) {
-
-    _deviceAddres = deviceAddress;
-
-    _wire = wire;
+    _wire = &Wire;
     _wire->begin();
 
     // clear/ reset registers
@@ -102,38 +92,32 @@ void PCA9633::setRGB(uint8_t r, uint8_t g, uint8_t b) {
 
 void PCA9633::setColor(uint8_t r, uint8_t g, uint8_t b) {
 
-    setPwm(_regRedPwm, r);
-    setPwm(_regGreenPwm, g);
-    setPwm(_regBluePwm, b);
+        setRed(r);
+        setGreen(g);
+        setBlue(b);
 }
 
 void PCA9633::setRed(uint8_t r) {
-
     setPwm(_regRedPwm, r);
 }
 
 void PCA9633::setGreen(uint8_t g) {
-
     setPwm(_regGreenPwm, g);
 }
 
 void PCA9633::setBlue(uint8_t b) {
-
     setPwm(_regBluePwm, b);
 }
 
 void PCA9633::setWhite(uint8_t w) {
-
     setPwm(_regWhitePwm, w);
 }
 
+
 void PCA9633::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
-    setRGB(r, g, b);
-
-    if (_hasWhiteChannel) {
-        setPwm(_regWhitePwm, w);
-    }
+    setColor(r, g, b);
+    setPwm(_regWhitePwm, w);
 }
 
 void PCA9633::setLdrState(uint8_t state, uint8_t ldrBit) {

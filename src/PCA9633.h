@@ -9,6 +9,8 @@
 #ifndef PCA9633_H
 #define PCA9633_H
 
+#define RGB_ADDRESS (0x62)
+
 #include <Wire.h>
 
 // Register definitions (page 11, table 7)
@@ -301,7 +303,8 @@ public:
      * @param regGreenPwm   Register address for green color channel
      * @param regBluePwm    Register address for blue color channel
      */
-    PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm);
+
+    PCA9633();
 
     /**
      * Constructor for PCA9633 with RGBW.
@@ -311,8 +314,8 @@ public:
      * @param regBluePwm    Register address for blue color channel
      * @param regWhitePwm   Register address for white color channel
      */
-    PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
-            uint8_t regWhitePwm);
+    //PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
+     //       uint8_t regWhitePwm);
 
     /**
      * Initialization.
@@ -320,7 +323,7 @@ public:
      * @param deviceAddress I2C address of the pca9633
      * @param wire          Reference to TwoWire for I2C communication
      */
-    void begin(uint8_t deviceAddress, TwoWire *wire);
+    void begin();
 
     /**
      * Turn on all LEDs. Restores settings saved at turnOff().
@@ -396,7 +399,6 @@ public:
     * @param r  Value for red color channel
     * @param g  Value for green color channel
     * @param b  Value for blue color channel
-    * @param w  Value for white color channel
     */
     void setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w);
 
