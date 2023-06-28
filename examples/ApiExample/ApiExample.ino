@@ -9,9 +9,9 @@
 #include "Arduino.h"
 #include "PCA9632.h"
 
-#define RGB_ADDRESS (0xc0 >> 1)
+#define RGB_ADDRESS (0x62)
 
-PCA9633 pca9632 = PCA9633(REG_PWM2, REG_PWM1, REG_PWM0);
+PCA9632 pca9632;
 
 void setup() {
     Serial.begin(115200);

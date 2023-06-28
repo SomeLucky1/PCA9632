@@ -82,6 +82,43 @@ but should work for every other board as well.
     void setRGB(uint8_t r, uint8_t g, uint8_t b);
 
     /**
+    * Set PWM values for Color.
+    *
+    * @param r  Value for red color channel
+    * @param g  Value for green color channel
+    * @param b  Value for blue color channel
+    */
+    void setColor(uint8_t r, uint8_t g, uint8_t b);
+
+    /**
+    * Set PWM values for Red.
+    *
+    * @param r  Value for red color channel
+    */
+    void setRed(uint8_t r);
+
+    /**
+    * Set PWM values for Green.
+    *
+    * @param g  Value for red color channel
+    */
+    void setGreen(uint8_t g);
+
+    /**
+    * Set PWM values for Blue.
+    *
+    * @param b  Value for green color channel
+    */
+    void setBlue(uint8_t b);
+
+    /**
+    * Set PWM values for White.
+    *
+    * @param w  Value for blue color channel
+    */
+    void setWhite(uint8_t w);
+
+    /**
     * Set PWM values for RGBW. Only available when PCA9632 object was created
     * with the RGBW constructor.
     *
