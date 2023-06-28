@@ -15,8 +15,8 @@ PCA9632 pca9632;
 
 void setup() {
     Serial.begin(115200);
-    pca9632.begin(RGB_ADDRESS, &Wire);
-    pca9632.setRGB(255, 255, 255);
+    pca9632.begin();
+    pca9632.setColor(255, 255, 255);
 }
 
 void loop() {
