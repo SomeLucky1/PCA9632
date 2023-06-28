@@ -1,63 +1,23 @@
-# PCA9633 driver for Arduino
+# PCA9632 driver for Arduino
 
-This library was developed and tested on an esp32 with a PCA9633DP2 controller,
+This library was developed and tested on an stm32f411 with a PCA9632DP1 controller,
 but should work for every other board as well.
 
-## Installation
-
-### Arduino IDE
-
-#### Installation using the Library Manager (IDE 1.6.2 and later)
-In the Arduino IDE, simply click on:\
-`[Sketch] -> Include Library -> Manage Libraries`\
-or\
-`[Tools] -> Manage Libraries`\
-Then search for `NXP PCA9633` to locate the library and install it.
-
-#### Installation prior to IDE 1.6.2
-Because the Library Manager is not available on versions prior to 1.6.2, you
-would have to clone this repository or download the .zip file to install the
-library manually. This is strongly discouraged as it can lead to several
-problems. You should really do yourself a favour and update your Arduino IDE to
-the latest version and install the library using the Library Manager instead.
-
-For generic information about Arduino libraries and how to install them consult
-the Arduino Libraries page: https://www.arduino.cc/en/Guide/Libraries
-
-### Other platforms
-There isn't a sophisticated installation support for other platforms yet (which
-doesn't mean that the library won't work). As long as Arduino libraries are
-supported, simply clone this repository according to the platforms guidelines.
 
 ## API overview:
 ```cpp
     /**
-     * Constructor for PCA9633 with RGB.
-     *
-     * @param regRedPwm     Register address for red color channel
-     * @param regGreenPwm   Register address for green color channel
-     * @param regBluePwm    Register address for blue color channel
+     * Constructor for PCA9632 with RGB.
      */
-    PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm);
-
-    /**
-     * Constructor for PCA9633 with RGBW.
-     *
-     * @param regRedPwm     Register address for red color channel
-     * @param regGreenPwm   Register address for green color channel
-     * @param regBluePwm    Register address for blue color channel
-     * @param regWhitePwm   Register address for white color channel
-     */
-    PCA9633(uint8_t regRedPwm, uint8_t regGreenPwm, uint8_t regBluePwm,
-            uint8_t regWhitePwm);
+    PCA9632();
 
     /**
      * Initialization.
      *
-     * @param deviceAddress I2C address of the pca9633
+     * @param deviceAddress I2C address of the pca9632
      * @param wire          Reference to TwoWire for I2C communication
      */
-    void begin(uint16_t deviceAddress, TwoWire *wire);
+    void begin();
 
     /**
      * Turn on all LEDs. Restores settings saved at turnOff().
@@ -122,7 +82,7 @@ supported, simply clone this repository according to the platforms guidelines.
     void setRGB(uint8_t r, uint8_t g, uint8_t b);
 
     /**
-    * Set PWM values for RGBW. Only available when PCA9633 object was created
+    * Set PWM values for RGBW. Only available when PCA9632 object was created
     * with the RGBW constructor.
     *
     * @param r  Value for red color channel
