@@ -29,6 +29,8 @@ void PCA9633::begin() {
     // clear/ reset registers
     writeReg(REG_MODE1, 0x0);
     writeReg(REG_MODE2, 0x0);
+    setLdrStateAll(LDR_STATE_IND_GRP);
+    setGroupControlMode(GROUP_CONTROL_MODE_DIMMING);
 }
 
 void PCA9633::wakeUp() {
@@ -116,7 +118,7 @@ void PCA9633::setWhite(uint8_t w) {
 
 void PCA9633::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
-    setColor(r, g, b);
+    setRGB(r, g, b);
     setPwm(_regWhitePwm, w);
 }
 

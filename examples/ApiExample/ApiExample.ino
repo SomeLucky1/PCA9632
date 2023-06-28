@@ -16,9 +16,6 @@ PCA9633 pca9633 = PCA9633(REG_PWM2, REG_PWM1, REG_PWM0);
 void setup() {
     Serial.begin(115200);
     pca9633.begin(RGB_ADDRESS, &Wire);
-
-    pca9633.setLdrStateAll(LDR_STATE_IND_GRP);
-    pca9633.setGroupControlMode(GROUP_CONTROL_MODE_DIMMING);
     pca9633.setRGB(255, 255, 255);
 }
 
