@@ -76,7 +76,7 @@ void PCA9632::setWhite(uint8_t w) {
 
 void PCA9632::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
-    setRGB(r, g, b);
+    setColor(r, g, b);
     setPwm(_regWhitePwm, w);
 }
 
