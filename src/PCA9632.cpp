@@ -1,11 +1,3 @@
-/*
- * Copyright (C) 2020 Hendrik van Essen
- *
- * This file is subject to the terms and conditions of the GNU Lesser
- * General Public License v2.1. See the file LICENSE in the top level
- * directory for more details.
- */
-
 #include "Arduino.h"
 
 #include "PCA9632.h"
@@ -34,33 +26,6 @@ void PCA9632::begin() {
     setGroupControlMode(GROUP_CONTROL_MODE_DIMMING);
 }
 
-void PCA9632::wakeUp() {
-
-    uint8_t prevReg = readReg(REG_MODE1);
-    uint8_t newReg = prevReg & ~(1 << BIT_SLEEP);
-
-    writeReg(REG_MODE1, newReg);
-}
-
-void PCA9632::sleep() {
-
-    uint8_t prevReg = readReg(REG_MODE1);
-    uint8_t newReg = prevReg | (1 << BIT_SLEEP);
-
-    writeReg(REG_MODE1, newReg);
-}
-
-void PCA9632::turnOn() {
-
-    writeReg(REG_LEDOUT, _storedRegLedout);
-}
-
-void PCA9632::turnOff() {
-
-    _storedRegLedout = readReg(REG_LEDOUT);
-    writeReg(REG_LEDOUT, LDR_STATE_OFF);
-}
-
 void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
 
     writeReg(regPwm, pwm);
@@ -86,13 +51,6 @@ void PCA9632::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
     writeReg(REG_GRPPWM, (uint8_t) ratio);
 }
 
-void PCA9632::setRGB(uint8_t r, uint8_t g, uint8_t b) {
-
-    setPwm(_regRedPwm, r);
-    setPwm(_regGreenPwm, g);
-    setPwm(_regBluePwm, b);
-}
-
 void PCA9632::setColor(uint8_t r, uint8_t g, uint8_t b) {
 
         setRed(r);
@@ -115,7 +73,6 @@ void PCA9632::setBlue(uint8_t b) {
 void PCA9632::setWhite(uint8_t w) {
     setPwm(_regWhitePwm, w);
 }
-
 
 void PCA9632::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 

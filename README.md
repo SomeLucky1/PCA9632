@@ -1,6 +1,6 @@
 # PCA9632 driver for Arduino
 
-This library was developed and tested on an stm32f411 with a PCA9632DP1 controller,
+This library was developed and tested on an STM32F411 with a PCA9632DP1 controller,
 but should work for every other board as well.
 
 
@@ -15,33 +15,6 @@ but should work for every other board as well.
      * Initialization.
      */
     void begin();
-
-    /**
-     * Turn on all LEDs. Restores settings saved at turnOff().
-     *
-     * WARNING: If you call turnOff() twice, without calling turnOn() in between,
-     *          then the restored state will be the turned off state!
-     */
-    void turnOn();
-
-    /**
-     * Turn off all LEDs. Saves current settings for turnOn().
-     * For power saving, see sleep().
-     *
-     * WARNING: If you call turnOff() twice, without calling turnOn() in between,
-     *          then the restored state will be the turned off state!
-     */
-    void turnOff();
-
-    /**
-     * Switch to normal mode.
-     */
-    void wakeUp();
-
-    /**
-     * Switch to low power mode.
-     */
-    void sleep();
 
     /**
      * Set individual PWM signal for a given channel.
@@ -68,15 +41,6 @@ but should work for every other board as well.
      *                      3/4 of the time the LEDs are off
      */
     void setBlinking(uint8_t blinkPeriod, float onOffRatio);
-
-    /**
-    * Set PWM values for RGB.
-    *
-    * @param r  Value for red color channel
-    * @param g  Value for green color channel
-    * @param b  Value for blue color channel
-    */
-    void setRGB(uint8_t r, uint8_t g, uint8_t b);
 
     /**
     * Set PWM values for Color.
