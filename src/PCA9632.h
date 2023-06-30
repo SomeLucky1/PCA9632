@@ -73,7 +73,6 @@ public:
     PCA9632();
     void begin();
     void setPwm(uint8_t regPwm, uint8_t pwm);
-    void setGrpPwm(uint8_t pwm);
     void setBlinking(uint8_t blinkPeriod, float onOffRatio);
     void setColor(uint8_t r, uint8_t g, uint8_t b);
     void setRed(uint8_t r);
@@ -92,7 +91,6 @@ private:
     uint8_t readReg(uint8_t registerAddress);
     uint8_t _deviceAddres;
     uint8_t _regRedPwm, _regGreenPwm, _regBluePwm, _regWhitePwm;
-    bool _hasWhiteChannel;
     uint8_t _storedRegLedout;
     TwoWire *_wire;
 };

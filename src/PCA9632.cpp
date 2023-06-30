@@ -4,9 +4,9 @@
 
 /******************************* PUBLIC METHODS *******************************/
 PCA9632::PCA9632() {
-
+    
     _regRedPwm = REG_PWM0;
-   _regGreenPwm = REG_PWM1;
+    _regGreenPwm = REG_PWM1;
     _regBluePwm = REG_PWM2;
     _regWhitePwm = REG_PWM3;
 }
@@ -29,11 +29,6 @@ void PCA9632::begin() {
 void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
 
     writeReg(regPwm, pwm);
-}
-
-void PCA9632::setGrpPwm(uint8_t pwm) {
-
-    writeReg(REG_GRPPWM, pwm);
 }
 
 void PCA9632::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
