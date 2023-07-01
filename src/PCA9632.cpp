@@ -59,25 +59,25 @@ void PCA9632::setColor(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void PCA9632::setRed(uint8_t r) {
-    setPwm(_regRedPwm, r);
+    setPwm(_regRedPwm, linearize(r));
 }
 
 void PCA9632::setGreen(uint8_t g) {
-    setPwm(_regGreenPwm, g);
+    setPwm(_regGreenPwm, linearize(g));
 }
 
 void PCA9632::setBlue(uint8_t b) {
-    setPwm(_regBluePwm, b);
+    setPwm(_regBluePwm, linearize(b));
 }
 
 void PCA9632::setWhite(uint8_t w) {
-    setPwm(_regWhitePwm, w);
+    setPwm(_regWhitePwm, linearize(w));
 }
 
 void PCA9632::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
     setColor(r, g, b);
-    setPwm(_regWhitePwm, w);
+    setPwm(_regWhitePwm, linearize(w));
 }
 
 void PCA9632::setLdrState(uint8_t state, uint8_t ldrBit) {
