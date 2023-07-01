@@ -28,7 +28,12 @@ void PCA9632::begin() {
 
 void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
 
-    writeReg(regPwm, pwm);
+    writeReg(regPwm, linearize(pwm));
+}
+
+void PCA9632::setGrpPwm(uint8_t pwm) {
+
+    writeReg(REG_GRPPWM, pwm);
 }
 
 void PCA9632::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
@@ -172,6 +177,10 @@ void PCA9632::setGroupControlMode(uint8_t mode) {
 }
 
 /****************************** PRIVATE METHODS *******************************/
+uint8_t PCA9632::linearize(uint8_t pwm) {
+  uint8_t result = pgm_read_byte(ledLinear + pwm);
+  return result;
+}
 
 void PCA9632::writeReg(uint8_t registerAddress, uint8_t data) {
 
