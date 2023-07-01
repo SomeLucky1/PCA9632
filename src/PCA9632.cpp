@@ -59,25 +59,25 @@ void PCA9632::setColor(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void PCA9632::setRed(uint8_t r) {
-    setPwm(_regRedPwm, linearize(r));
+    setPwm(_regRedPwm, g);
 }
 
 void PCA9632::setGreen(uint8_t g) {
-    setPwm(_regGreenPwm, linearize(g));
+    setPwm(_regGreenPwm, g);
 }
 
 void PCA9632::setBlue(uint8_t b) {
-    setPwm(_regBluePwm, linearize(b));
+    setPwm(_regBluePwm, b);
 }
 
 void PCA9632::setWhite(uint8_t w) {
-    setPwm(_regWhitePwm, linearize(w));
+    setPwm(_regWhitePwm, w);
 }
 
 void PCA9632::setRGBW(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 
     setColor(r, g, b);
-    setPwm(_regWhitePwm, linearize(w));
+    setPwm(_regWhitePwm, w);
 }
 
 void PCA9632::setLdrState(uint8_t state, uint8_t ldrBit) {
@@ -177,7 +177,6 @@ void PCA9632::setGroupControlMode(uint8_t mode) {
 }
 
 /****************************** PRIVATE METHODS *******************************/
-uint8_t PCA9632::linearize(uint8_t pwm) {
   uint8_t result = pgm_read_byte(ledLinear + pwm);
   return result;
 }
