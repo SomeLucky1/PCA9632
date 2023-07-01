@@ -59,7 +59,7 @@ void PCA9632::setColor(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void PCA9632::setRed(uint8_t r) {
-    setPwm(_regRedPwm, g);
+    setPwm(_regRedPwm, r);
 }
 
 void PCA9632::setGreen(uint8_t g) {
