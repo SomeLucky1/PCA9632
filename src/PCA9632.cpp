@@ -33,7 +33,7 @@ void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
 
 void PCA9632::setGrpPwm(uint8_t pwm) {
 
-    writeReg(REG_GRPPWM, pwm);
+    writeReg(REG_GRPPWM, linearize(pwm));
 }
 
 void PCA9632::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
