@@ -177,10 +177,6 @@ void PCA9632::setGroupControlMode(uint8_t mode) {
 }
 
 /****************************** PRIVATE METHODS *******************************/
-  uint8_t result = pgm_read_byte(ledLinear + pwm);
-  return result;
-}
-
 void PCA9632::writeReg(uint8_t registerAddress, uint8_t data) {
 
     _wire->beginTransmission(_deviceAddres);
