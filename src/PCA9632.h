@@ -108,6 +108,7 @@ public:
     void setGroupControlMode(uint8_t mode);
 
 private:
+    uint8_t linearize(uint8_t pwm);
     void writeReg(uint8_t registerAddress, uint8_t data);
     uint8_t readReg(uint8_t registerAddress);
     uint8_t _deviceAddres;
