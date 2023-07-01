@@ -31,7 +31,7 @@ void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
     writeReg(regPwm, pwm);
 }
 
-void PCA9632::setGrpPwm(uint8_t pwm) {
+void PCA9632::setCurrent(uint8_t pwm) {
 
     writeReg(REG_GRPPWM, pwm);
 }
