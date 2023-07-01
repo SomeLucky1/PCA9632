@@ -28,7 +28,7 @@ void PCA9632::begin() {
 
 void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
 
-    writeReg(regPwm, linearize(pwm));
+    writeReg(regPwm, pwm);
 }
 
 void PCA9632::setGrpPwm(uint8_t pwm) {
