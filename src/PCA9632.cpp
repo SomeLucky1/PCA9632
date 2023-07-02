@@ -32,7 +32,7 @@ void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
 }
 
 void PCA9632::setCurrent(uint8_t pwm) {
-
+// Values between 0x00:0x1F are shifted to 0x00:0xF0.  Only the 4 MSB are used. 
     writeReg(REG_GRPPWM, pwm<<3);
 }
 

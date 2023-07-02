@@ -22,6 +22,11 @@ but should work for every other board as well.
     void setPwm(uint8_t regPwm, uint8_t pwm);
 
     /**
+     * Set group brightness PWM for all channels. Accepts 32 values 0x00:0x1F.
+     */
+    void setCurrent(uint8_t pwm);
+
+    /**
      * Set up values for blinking mode. Blinking mode needs to be activated
      * manually by calling setGroupControlMode(GROUP_CONTROL_MODE_BLINKING).
      *
