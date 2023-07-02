@@ -73,6 +73,7 @@ public:
     PCA9632();
     void begin();
     void setPwm(uint8_t regPwm, uint8_t pwm);
+    void setCurrent(uint8_t pwm);
     void setBlinking(uint8_t blinkPeriod, float onOffRatio);
     void setColor(uint8_t r, uint8_t g, uint8_t b);
     void setRed(uint8_t r);

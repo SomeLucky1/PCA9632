@@ -31,6 +31,11 @@ void PCA9632::setPwm(uint8_t regPwm, uint8_t pwm) {
     writeReg(regPwm, pwm);
 }
 
+void PCA9632::setCurrent(uint8_t pwm) {
+
+    writeReg(REG_GRPPWM, pwm<<3);
+}
+
 void PCA9632::setBlinking(uint8_t blinkPeriod, float onOffRatio) {
 
     int16_t ratio = onOffRatio * 256;
